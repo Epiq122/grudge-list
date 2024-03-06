@@ -1,6 +1,8 @@
 import { addGrudge } from './actions/create-grudge';
+import { sql } from '@vercel/postgres';
 
-export default function Home() {
+export default async function Home() {
+  const { rows } = await sql`SELECT * FROM Grudges`;
   return (
     <div className='bg-gray-900 min-h-screen flex justify-center items-center'>
       <div className='bg-gray-800 text-white rounded-lg p-8 max-w-md w-full shadow-lg'>
@@ -23,6 +25,19 @@ export default function Home() {
             Add Grudge
           </button>
         </form>
+        <div>
+          <h2 className='text-3xl font-bold mt-8 mb-4'>Grudges</h2>
+          <ul>
+            {rows.map((grudge, index) => (
+              <li
+                key={index}
+                className='text-white bg-gray-600 p-2 rounded-md mt-2 shadow'
+              >
+                {grudge.name}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );
