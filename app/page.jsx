@@ -1,9 +1,11 @@
+import { addGrudge } from './actions/create-grudge';
+
 export default function Home() {
   return (
     <div className='bg-gray-900 min-h-screen flex justify-center items-center'>
       <div className='bg-gray-800 text-white rounded-lg p-8 max-w-md w-full shadow-lg'>
         <h1 className='text-3xl font-bold mb-4'>Add a Grudge</h1>
-        <form action={'addGrudge'}>
+        <form action={addGrudge}>
           <div className='mb-4'>
             <label htmlFor='grudgeName'>Name of Grudge</label>
             <input
